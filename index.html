@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glow & Co. | Premium Beauty Portal</title>
+    <style>
+        :root {
+            --primary: #d4a373;
+            --secondary: #faedcd;
+            --dark: #4a3728;
+            --light: #fefae0;
+            --accent: #ccd5ae;
+            --white: #ffffff;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--white);
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            margin-left: 20px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            background: linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)), url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 60vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--dark);
+        }
+
+        .section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+            margin: 10px auto 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-tag {
+            background-color: var(--secondary);
+            color: var(--dark);
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .card-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .card-price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .form-container {
+            background-color: var(--white);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            color: var(--dark);
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+            }
+            nav {
+                margin-top: 15px;
+            }
+            nav a {
+                margin: 0 10px;
+            }
+            .hero-content h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">Glow & Co.</div>
+            <nav>
+                <a href="#products">Products</a>
+                <a href="#tutorials">Tutorials</a>
+                <a href="#order">Order Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Elevate Your Self-Care Routine</h1>
+            <p>Explore premium skincare, haircare, makeup collections, and step-by-step beauty tutorials crafted just for your unique glow.</p>
+            <a href="#order" class="btn">Shop Our Catalog</a>
+        </div>
+    </section>
+
+    <!-- Products & Sales Section -->
+    <section class="section" id="products">
+        <h2 class="section-title">Curated Beauty & Sales</h2>
+        <div class="grid">
+            <!-- Skincare -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1608248597481-496100c8c836?auto=format&fit=crop&w=500&q=80" alt="Skincare Serum" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">Skincare</span>
+                    <h3 class="card-title">Hydrating Hyaluronic Serum</h3>
+                    <p>Deep skin hydration barrier protection solution.</p>
+                    <p class="card-price">$24.00 <span style="text-decoration: line-through; font-size: 14px; color: #aaa;">$32.00</span></p>
+                </div>
+            </div>
+            <!-- Haircare -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?auto=format&fit=crop&w=500&q=80" alt="Hair Oil" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">Haircare</span>
+                    <h3 class="card-title">Argan Oil Nourishing Mask</h3>
+                    <p>Deep conditioning treatment for silky, smooth hair lengths.</p>
+                    <p class="card-price">$28.00</p>
+                </div>
+            </div>
+            <!-- Selfcare -->
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1600334089648-b0d9d3028eb2?auto=format&fit=crop&w=500&q=80" alt="Selfcare Kit" class="card-img">
+                <div class="card-body">
+                    <span class="card-tag">Selfcare</span>
+                    <h3 class="card-title">Rosewater Calming Mist Trio</h3>
+                    <p>Therapeutic herbal facial mists for daily relaxation.</p>
+                    <p class="card-price">$19.00 <span style="text-decoration: line-through; font-size: 14px; color: #aaa;">$25.00</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorials Section -->
+    <section class="section" id="tutorials">
+        <h2 class="section-title">Makeup & Routine Tutorials</h2>
+        <div class="grid">
+            <div>
+                <div class="video-container">
+                    <!-- Replace with real embed code when available -->
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h3 class="card-title" style="margin-top: 15px;">5-Minute Everyday Glow Look</h3>
+                <p>Learn a quick, effortless morning routine highlighting minimal foundation and natural flush.</p>
+            </div>
+            <div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <h3 class="card-title" style="margin-top: 15px;">Advanced Skincare Layering Guide</h3>
+                <p>Master how to correctly order toners, serums, retinols, and facial oils without pilling.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ordering / Data Collection Section -->
+    <section class="section" id="order">
+        <h2 class="section-title">Secure Delivery Order Form</h2>
+        <div class="form-container">
+            <!-- Form points to Google Script Web App URL -->
+            <form id="beautyOrderForm" action="https://script.google.com/macros/s/AKfycbwTtEvCb3bCC4HypiXSIoPDW6MgHmcY19YV7gy61PVZkK488O-GxD7aS5r9yPohNaRq/exec" method="POST">
+                
+                <div class="form-group">
+                    <label for="customerName">Full Name</label>
+                    <input type="text" id="customerName" name="customerName" placeholder="Enter your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactNumber">Contact Number</label>
+                    <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter phone number" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="deliveryAddress">Delivery Address</label>
+                    <textarea id="deliveryAddress" name="deliveryAddress" rows="4" placeholder="Enter complete shipping details" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="selectedProduct">Select Beauty Product</label>
+                    <select id="selectedProduct" name="selectedProduct" required>
+                        <option value="" disabled selected>-- Select an Option --</option>
+                        <option value="Hydrating Hyaluronic Serum">Hydrating Hyaluronic Serum - $24.00 (Sale)</option>
+                        <option value="Argan Oil Nourishing Mask">Argan Oil Nourishing Mask - $28.00</option>
+                        <option value="Rosewater Calming Mist Trio">Rosewater Calming Mist Trio - $19.00 (Sale)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Place Order & Submit Details</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Glow & Co. All rights reserved. Powered by GitHub Pages & Google Sheets.</p>
+    </footer>
+
+</body>
+</html>
